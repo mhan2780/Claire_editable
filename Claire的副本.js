@@ -1,12 +1,12 @@
 define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) {
 
 	/**
-	You can modify most of what you need to modify in the settings
+	You can modify most of what you need to modify in the settings 
 	defined in epObj below. Or use an external script to call the epExtension function.
 	**/
 
 	/**
-	Created by: Yoav Bar-Anan (baranan@gmail.com).
+	Created by: Yoav Bar-Anan (baranan@gmail.com). 
 	 * @param  {Object} options Options that replace the defaults...
 	 * @return {Object}         PIP script
 	**/
@@ -29,104 +29,112 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 					name : 'prime1',  //Will be used in the logging
 					//An array of all media objects for this category.
 					mediaArray : [{word : 'prime1Stim1'}, {word : 'prime1Stim2'}]
-				},
+				}, 
 				{
-					name : 'prime2',
+					name : 'prime2', 
 					mediaArray : [{word : 'prime2Stim2'}, {word : 'prime2Stim2'}]
 				}
-			],
+			],	
 			//The two target categories.
 			targetCats : {
 				rightAttTargets: {
-					name : 'Extremely associated',
+					name : 'Pleasant', 
 					title : {
-						media : {word : 'Extremely associated'}, //Name of the attribute presented in the task.
+						media : {word : 'Pleasant'}, //Name of the attribute presented in the task.
 						css : {color:'#0000FF','font-size':'3em'} //Style of the attribute title.
-					},
+					}, 
 					mediaArray : [
-						{word: 'sofa-lamp'},
-						{word: 'table-pillow'},
-						{word: 'chair-wardrobe'},
-						{word: 'curtains-bookshelf'},
-						{word: 'Stelevision-telephone'},
-						{word: 'clock-lamp'},
-						{word: 'cushion-sofa'},
-						{word: 'vase-table'},
-						{word: 'drawers-nightstand'},
-						{word: 'fan-lamp'}
-					],
+						{word: 'Paradise'},
+						{word: 'Pleasure'},
+						{word: 'Cheer'},
+						{word: 'Friend'},
+						{word: 'Splendid'},
+						{word: 'Love'},
+						{word: 'Glee'},
+						{word: 'Smile'},
+						{word: 'Enjoy'},
+						{word: 'Delight'},
+						{word: 'Beautiful'},
+						{word: 'Attractive'},
+						{word: 'Likeable'},
+						{word: 'Wonderful'}
+					], 
 					stimulusCSS : {color:'#0000FF','font-size':'2em'}
-				},
+				}, 
 				leftAttTargets : {
-					name : 'Not associated',
+					name : 'Unpleasant', 
 					title : {
-						media : {word : 'Not associated'}, //Name of the attribute presented in the task.
+						media : {word : 'Unpleasant'}, //Name of the attribute presented in the task.
 						css : {color:'#0000FF','font-size':'3em'} //Style of the attribute title.
-					},
+					}, 
 					mediaArray : [
-						{word: 'armchair-desk'},
-						{word: 'chair-clock'},
-						{word: 'wardrobe-mirror'},
-						{word: 'pillow-cushion'},
-						{word: 'sofa-television'},
-						{word: 'curtains-vase'},
-						{word: 'hat stand-bed'},
-						{word: 'vacuum-teapot'},
-						{word: 'coat hanger-blanket'},
-						{word: 'armchair-television'}
+						{word: 'Bomb'},
+						{word: 'Abuse'},
+						{word: 'Sadness'},
+						{word: 'Pain'},
+						{word: 'Poison'},
+						{word: 'Grief'},
+						{word: 'Ugly'},
+						{word: 'Dirty'},
+						{word: 'Stink'},
+						{word: 'Noxious'},
+						{word: 'Humiliate'},
+						{word: 'Annoying'},
+						{word: 'Disgusting'},
+						{word: 'Offensive'}
 					],
 					stimulusCSS : {color:'#0000FF','font-size':'2em'}
 				}
 			},
-
+			
 			nTrialsPerPrimeTargetPair:15, //How many trials in a block, per prime-target combination (always three blocks).
 			nBlocks : 3,
-
+			
 			//Whether to select the prime and targe stimuli randomly without repetition for each prime-target combination until exhuastion
 			//Or select the stimuli randomly without repetition for the whole task.
-			//For example, if a prime category has the items A, B, and C = random selection without repetition will not select the same stimulus twice until the other stimuli are selected.
-			//If this parameter is set to true, after selecting the prime stimulus A with a target of the category 'positive', 'A' will not be selected again in trials with 'positive' targets,
-			//until B and C are also selected. However, 'A' might appear as prime for other target because their selection is separate.
+			//For example, if a prime category has the items A, B, and C = random selection without repetition will not select the same stimulus twice until the other stimuli are selected. 
+			//If this parameter is set to true, after selecting the prime stimulus A with a target of the category 'positive', 'A' will not be selected again in trials with 'positive' targets, 
+			//until B and C are also selected. However, 'A' might appear as prime for other target because their selection is separate. 
 			//If this parameter is set to false, then 'A' will not be selected in any trial, until 'B' and 'C' are also selected.
-			//The default here is true because it allows showing all the prime-target possible combinations (if there are enough trials).
-			//If this parameter is set to false, it possible that some prime categories will never appear with a certain target stimulus.
-			separateStimulusSelection : true,
-
-			//Instructions template for each block.
-			//If you enter blockNum, nBlocks, posAttribute and negAttribute they will be replaced with
+			//The default here is true because it allows showing all the prime-target possible combinations (if there are enough trials). 
+			//If this parameter is set to false, it possible that some prime categories will never appear with a certain target stimulus. 
+			separateStimulusSelection : true, 
+			
+			//Instructions template for each block. 
+			//If you enter blockNum, nBlocks, posAttribute and negAttribute they will be replaced with 
 			//the number of the current block, nBlocks, rightAttTargets.name and leftAttTargets.name
 			instructions : {
 				//Block 1
-				firstBlock : '<div><p style="font-size:1.3em; text-align:left; margin-left:10px; font-family:arial"><color="000000"><br/>' +
-				'Put your middle or index fingers on the <b>E</b> and <b>I</b> keys of your keyboard. ' +
-				'Pairs of items (words and images) will appear one after another. ' +
-				'For each pair of items, ignore the first item and categorize the second item as posAttribute'  +
-				' or negAttribute.<br/><br/>' +
-				'When the second item you see belongs to the category "negAttribute", press <b>E</b>; ' +
-				'when the item belongs to the category "posAttribute", press <b>I</b>. ' +
-				'If you make an error, an </color> <font color="#ff0000"><b>X</b></font> will appear.<br/><br/>' +
-				'This is a timed sorting task. <b>GO AS FAST AS YOU CAN</b> while making as few mistakes as possible.' +
-				'</color></p><p style="font-size:14px; text-align:center; font-family:arial"><color="000000"><br/><br/>' +
-				'press SPACE to begin</p><p style="font-size:12px; text-align:center; font-family:arial">' +
-				'<color="000000">[Round 1 of nBlocks]</p></div>',
+				firstBlock : '<div><p style="font-size:1.3em; text-align:left; margin-left:10px; font-family:arial"><color="000000"><br/>' + 
+				'Put your middle or index fingers on the <b>E</b> and <b>I</b> keys of your keyboard. ' + 
+				'Pairs of items (words and images) will appear one after another. ' + 
+				'For each pair of items, ignore the first item and categorize the second item as posAttribute'  + 
+				' or negAttribute.<br/><br/>' + 
+				'When the second item you see belongs to the category "negAttribute", press <b>E</b>; ' + 
+				'when the item belongs to the category "posAttribute", press <b>I</b>. ' + 
+				'If you make an error, an </color> <font color="#ff0000"><b>X</b></font> will appear.<br/><br/>' + 
+				'This is a timed sorting task. <b>GO AS FAST AS YOU CAN</b> while making as few mistakes as possible.' + 
+				'</color></p><p style="font-size:14px; text-align:center; font-family:arial"><color="000000"><br/><br/>' + 
+				'press SPACE to begin</p><p style="font-size:12px; text-align:center; font-family:arial">' + 
+				'<color="000000">[Round 1 of nBlocks]</p></div>', 
 				//Block 2
-				middleBlock : '<div><p style="font-size:1.3em; text-align:left; margin-left:10px; font-family:arial"><color="000000"><br/>' +
-				'Press SPACE to continue with the same task.<br/><br/>' +
-				'Ignore the first item and categorize the second item.<br/><br/>' +
-				'Press <b>E</b> if the second item is negAttribute.<br/>' +
-				'Press <b>I</b> if the second item is posAttribute.</p><br/><br/>' +
-				'<p style="font-size:12px; text-align:center; font-family:arial">' +
-				'<color="000000">[Round blockNum of nBlocks]</p></div>',
+				middleBlock : '<div><p style="font-size:1.3em; text-align:left; margin-left:10px; font-family:arial"><color="000000"><br/>' + 
+				'Press SPACE to continue with the same task.<br/><br/>' + 
+				'Ignore the first item and categorize the second item.<br/><br/>' + 
+				'Press <b>E</b> if the second item is negAttribute.<br/>' + 
+				'Press <b>I</b> if the second item is posAttribute.</p><br/><br/>' + 
+				'<p style="font-size:12px; text-align:center; font-family:arial">' + 
+				'<color="000000">[Round blockNum of nBlocks]</p></div>', 
 				//Block 3
-				lastBlock : '<div><p style="font-size:1.3em; text-align:left; margin-left:10px; font-family:arial"><color="000000"><br/>' +
-				'This task can be a little exhausting. ' +
-				'Try to challenge yourself to respond as quickly as you can without making mistakes.<br/><br/>' +
-				'Press SPACE for the final round.</p><br/><br/>' +
-				'<p style="font-size:12px; text-align:center; font-family:arial">' +
+				lastBlock : '<div><p style="font-size:1.3em; text-align:left; margin-left:10px; font-family:arial"><color="000000"><br/>' + 
+				'This task can be a little exhausting. ' + 
+				'Try to challenge yourself to respond as quickly as you can without making mistakes.<br/><br/>' + 
+				'Press SPACE for the final round.</p><br/><br/>' + 
+				'<p style="font-size:12px; text-align:center; font-family:arial">' + 
 				'<color="000000">[Round nBlocks of nBlocks]</p></div>'
 			},
-
-			//The canvas object.
+			
+			//The canvas object. 
 			canvas : {
 				maxWidth: 775,
 				proportions : 0.85,
@@ -134,49 +142,49 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 				borderWidth: 5,
 				canvasBackground: '#ffffff',
 				borderColor: 'lightblue'
-			},
+			}, 
 			//Set the image folder here.
 			base_url : {
 				image : 'https://galmaimon.github.io/iatage'
-			},
+			}, 
 			primeDuration : 200, //Default prime duration
 			fixationDuration : 0, //No fixation by default
 			//Change the fixation stimulus here
 			fixationStimulus : {
-				css : {color:'black', 'font-size':'3em'},
+				css : {color:'black', 'font-size':'3em'}, 
 				media : {word:'+'}
-			},
+			}, 
 			deadlineDuration : 0, //0 means no response deadline: we wait until response.
 			//Change the deadline message stimulus here
 			deadlineStimulus : {
-				css : {color:'red', 'font-size':'2.5em'},
-				media : {word:'!!!PLEASE RESPOND FASTER!!!'},
+				css : {color:'red', 'font-size':'2.5em'}, 
+				media : {word:'!!!PLEASE RESPOND FASTER!!!'}, 
 				location: {bottom:10}
-			},
-			deadlineMsgDuration : 750,
-			errorFBDuration : 750,
+			}, 
+			deadlineMsgDuration : 750, 
+			errorFBDuration : 750, 
 			ITIDuration : {min:300, max: 900}, //Can change to a single number. e.g.,  ITIDuration : 400
 
-			//The feedback messages for each cutoff -
-			//You will get a comparison feedback for each
-			//pair, and also single feedback message for each category.
-			//The feedback variable names will be in the format of Cat1vsCat2_FB for comparisons,
+			//The feedback messages for each cutoff - 
+			//You will get a comparison feedback for each 
+			//pair, and also single feedback message for each category. 
+			//The feedback variable names will be in the format of Cat1vsCat2_FB for comparisons, 
 			// and Cat1_FB for single category feedback message.
 			//CATEGORYA, and CATEGORYB will be replaced with the names of the relevant categories.
 			fb_rightAttWithCatA_leftAttWithCatB : 'Your data suggest automatic preference of CATEGORYA over CATEGORYB.',
 			fb_equal_CatAvsCatB : 'Your data suggest no preference between CATEGORYA and CATEGORYB.',
-			//Feedback for each CATEGORY, separately. Notice that by default, attribute1 is the positive attribute.
+			//Feedback for each CATEGORY, separately. Notice that by default, attribute1 is the positive attribute. 
 			//CATEGORY is the CATEGORY name. Can also use attribute1 and attribute2 to refer to attribute1.name and attribute2.name.
 			fb_CatWithRightAtt : 'Your data suggest positive automatic evaluation of CATEGORY.',
 			fb_catWithBoth : 'Your data suggest neutral automatic evaluation of CATEGORY.',
 			fb_CatWithLeftAtt : 'Your data suggest negative automatic evaluation of CATEGORY.',
-
+			
 			//Error messages in the feedback
 			manyErrors: 'There were too many errors made to determine a result.',
 			tooFast: 'There were too many fast trials to determine a result.',
 			notEnough: 'There were not enough trials to determine a result.'
 		};
-
+		
 		// extend the current object with the default
         _.extend(piCurrent, _.defaults(options, epObj));
 
@@ -190,7 +198,7 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 		//For debugging the logger
 		//window.minnoJS.logger = console.log;
 		//window.minnoJS.onEnd = console.log;
-
+		
         API.addSettings('logger', {
             // gather logs in array
             onRow: function(logName, log, settings, ctx){
@@ -226,7 +234,7 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
                         myLogs.push(logs[iLog]);
                     }
                 }
-                var content = myLogs.map(function (log) {
+                var content = myLogs.map(function (log) { 
                     return [
                         log.data.block, //'block'
                         log.trial_id, //'trial'
@@ -259,7 +267,7 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
                             //block3Cond //'bOrd'
                         ]);
                 //console.log('added');
-
+                        
                 content.unshift(headers);
                 return toCsv(content);
 
@@ -289,7 +297,7 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
                 window.minnoJS.logger(serialized);
             }
         });
-
+	
 		var primeCats = piCurrent.primeCats;
 		var targetCats = piCurrent.targetCats;
 
@@ -300,7 +308,7 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 		API.addSettings('base_url',piCurrent.base_url);
 
 		API.addGlobal({deadlineDuration:piCurrent.deadlineDuration});
-
+		
 		//Define the basic trial (the prsentation of the images and words)
 		API.addTrialSets({
 			basicTrial: [{
@@ -324,7 +332,7 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 					},
 					{//If fixation duration is not 0, then start with the fixation
 						conditions: [
-							{type:'begin'},
+							{type:'begin'}, 
 							{type:'globalEquals',property:'fixationDuration', value:0, negate:true}
 						],
 						actions: [
@@ -360,13 +368,13 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 					},
 					{
 						conditions: [
-							{type:'inputEquals',value:'targetOut'},
+							{type:'inputEquals',value:'targetOut'}, 
 							{type:'globalEquals',property:'deadlineDuration', value:0, negate:true} //if deadline duration is 0, then there is no deadline.
 						], // on time out
 						actions: [
 							{type:'showStim',handle:'deadline'}, // did not respond on time
 							{type:'setTrialAttr', setter:{score:2}}, //2 is for timeout
-							{type:'log'}, // here we call the log action.
+							{type:'log'}, // here we call the log action. 
 							{type:'removeInput', handle:'All'},
 							{type:'trigger', handle:'goBlank', duration:piCurrent.deadlineMsgDuration}
 						]
@@ -447,10 +455,10 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
             			inherit:'Default',
 				        media: {inherit: piCurrent.separateStimulusSelection ? //Should we select the target stimulus for each target category separately?
 				        {type:'exRandom', set:inTargetCat, seed:cond+'t'} : {type:'exRandom', set:inTargetCat} }, //Inherit the prime media items for each condition, separately.
-            			css : (inTargetCat == targetCats.rightAttTargets.name) ?
+            			css : (inTargetCat == targetCats.rightAttTargets.name) ? 
             			targetCats.rightAttTargets.stimulusCSS :
             			targetCats.leftAttTargets.stimulusCSS
-            		},
+            		},					
             		{ inherit: 'fixation', data : {handle:'fixation'}, nolog: true},
 					{ inherit: 'errorFB', nolog: true},
 					{ inherit: 'deadline', data : {handle:'deadline'}, nolog: true},
@@ -490,15 +498,15 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 				}
 			]
         });
-
+        
 
 		//Use the basic trial to create all the prime-target trial types, their stimulus sets, media sets, and a trial set that includes all of them.
 		var sortingTrialsArray = [];
 		for (var iCat=0; iCat < primeCats.length; iCat++)
 		{
-			API.addTrialSets(primeCats[iCat].name+ '+' + targetCats.rightAttTargets.name,[inheritBasic(primeCats[iCat].name, targetCats.rightAttTargets.name)]);
+			API.addTrialSets(primeCats[iCat].name+ '+' + targetCats.rightAttTargets.name,[inheritBasic(primeCats[iCat].name, targetCats.rightAttTargets.name)]); 
 			sortingTrialsArray.push({inherit:primeCats[iCat].name+ '+' + targetCats.rightAttTargets.name});
-			API.addTrialSets(primeCats[iCat].name+ '+' + targetCats.leftAttTargets.name,[inheritBasic(primeCats[iCat].name, targetCats.leftAttTargets.name)]);
+			API.addTrialSets(primeCats[iCat].name+ '+' + targetCats.leftAttTargets.name,[inheritBasic(primeCats[iCat].name, targetCats.leftAttTargets.name)]); 
 			sortingTrialsArray.push({inherit:primeCats[iCat].name+ '+' + targetCats.leftAttTargets.name});
 			API.addMediaSets(primeCats[iCat].name, primeCats[iCat].mediaArray);
 		}
@@ -507,7 +515,7 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 		API.addMediaSets(targetCats.leftAttTargets.name, targetCats.leftAttTargets.mediaArray);
 
 		API.addTrialSets('sortingTrial', sortingTrialsArray);
-
+		
 		//Define the instructions trial
 		API.addTrialSets('inst',{
 			input: [
@@ -543,7 +551,7 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 		/*********************/
 		/***    SEQUENCE   ***/
 		/*********************/
-
+		
 		//Helper to prepare the instructions html.
 		function getInstHTML(inText, inBlock)
 		{
@@ -582,12 +590,12 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 				},
 				{ //The sorting trials
 					mixer: 'repeat',
-					times : piCurrent.nTrialsPerPrimeTargetPair*primeCats.length*2,
+					times : piCurrent.nTrialsPerPrimeTargetPair*primeCats.length*2, 
 					data : [{inherit: {set: 'sortingTrial',type:'exRandom'}, data:{block:iBlock}}]
 				}
 			);
 		}
-
+		
 
 		//Last trial
 		theSequence.push(
@@ -598,7 +606,7 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 			stimuli: [
 					{//The instructions stimulus
 						data : {'handle':'instStim'},
-						media:{html:'<div><p style="font-size:28px;text-align:center;"><color="#000000">' +
+						media:{html:'<div><p style="font-size:28px;text-align:center;"><color="#000000">' + 
 						'You have completed this task<br/><br/>Press SPACE to continue.</p></div>'},
 						size:{width:100}
 					}
@@ -623,7 +631,7 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 				postSettings : {url:"/implicit/scorer"}
 			});
 
-			//Feedback for each CATEGORY, separately. Notice that by default, attribute1 is the positive attribute.
+			//Feedback for each CATEGORY, separately. Notice that by default, attribute1 is the positive attribute. 
 			//CATEGORY is the CATEGORY name. Can also use attribute1 and attribute2 to refer to attribute1.name and attribute2.name.
 			scorer.addSettings('message',{
 				MessageDef: [
@@ -633,13 +641,13 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 				],
 				manyErrors : piCurrent.manyErrors,
 				tooFast : piCurrent.tooFast,
-				notEnough : piCurrent.notEnough
+				notEnough : piCurrent.notEnough		
 			});
-
+			
 			var scored = scorer.computeD();
 			scored.problem = (
-				scored.FBMsg == piCurrent.manyErrors ||
-				scored.FBMsg == piCurrent.tooFast ||
+				scored.FBMsg == piCurrent.manyErrors || 
+				scored.FBMsg == piCurrent.tooFast || 
 				scored.FBMsg == piCurrent.notEnough);
 
 			return (scored);
@@ -647,7 +655,7 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 		//Helper to replace text in the feedback messages
 		function replaceCats(inText, catAname, catBname)
 		{
-			var retText= inText.replace(/CATEGORYA/g, catAname);
+			var retText= inText.replace(/CATEGORYA/g, catAname);  
 			retText = retText.replace(/CATEGORYB/g, catBname);
 			return(retText);
 		}
@@ -665,7 +673,7 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 			}
 			return({fb:message, score:diffScore});
 		}
-
+		
 		//What to do at the end of the task.
 		API.addSettings('hooks',{
 			endTask: function(){
@@ -692,9 +700,9 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 						else
 						{//Compute preference
 							prfObj = getPreferenceMessage({
-								score1 : scoreObj[catName + '_score'],
-								score2 : scoreObj[otherCatName + '_score'],
-								name1 : primeCats[iCat].name,
+								score1 : scoreObj[catName + '_score'], 
+								score2 : scoreObj[otherCatName + '_score'], 
+								name1 : primeCats[iCat].name, 
 								name2 : primeCats[iOtherCat].name});
 						}
 						//console.log(primeCats[iOtherCat].name + '-versus-' + primeCats[iCat].name + '_FB=' + prfObj.fb);
@@ -715,9 +723,9 @@ define(['pipAPI','pipScorer','underscore'], function(APIConstructor, Scorer, _) 
 				//API.save(scoreObj);
 			}
 		});
-
+		
 		return API.script;
 	}
-
+	
 	return epExtension;
 });
